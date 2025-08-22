@@ -23,9 +23,11 @@ namespace minimal_api.Migrations
 
             modelBuilder.Entity("minimal_api.Dominio.Entidades.Administrador", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -45,6 +47,15 @@ namespace minimal_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Administradores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "administrador@test.com",
+                            Perfil = "Admin",
+                            Senha = "123456"
+                        });
                 });
 #pragma warning restore 612, 618
         }
